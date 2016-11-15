@@ -127,16 +127,20 @@ var alki = {
 //end of capitolHill
 };
 
+
+//where it's all written to the DOM.
 var storeList = [pike, seatac, seattleCenter, capitolHill, alki];
 function printSalesFigures() {
   var contentArea = document.getElementById('content_area');
-  var totalCookiesPerDay = 0;
 
 //for loop for stores, looping through each store in array storeList.
   for(var k = 0; k < storeList.length; k++){
+    var totalCookiesPerDay = 0;
     console.log(storeList[k].name);
+
     var ul = document.createElement('ul');
     ul.innerHTML = '<h2><u>' + storeList[k].name + '</u></h2>';
+
     // console.log(storeList[k].hours.length);
     //this loop prints the hours and the sales figures per hour.
     for(var i = 0; i < storeList[k].hours.length; i++){
@@ -145,7 +149,7 @@ function printSalesFigures() {
       var freshBake = storeList[k].cookiesPerHour();
 
       li.textContent += storeList[k].hours[i];
-      li.textContent += ' : ' + freshBake + ' cookies';
+      li.textContent += ': ' + freshBake + ' cookies';
       ul.appendChild(li);
       totalCookiesPerDay += freshBake;
     //end of inner for loop
@@ -155,10 +159,11 @@ function printSalesFigures() {
     li.innerHTML = '<strong>Total ' + totalCookiesPerDay + '</strong>';
     ul.appendChild(li);
     contentArea.appendChild(ul);
+    totalCookiesPerDay = 0;
 //end of outer for-loop
   }
-    li.textContent += 'cookies';
 
+  li.textContent += 'cookies';
 //END OF FUNCTION printSalesFigures
 }
 
