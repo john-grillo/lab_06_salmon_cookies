@@ -1,36 +1,37 @@
 'use strict';
-var cookieStore = {
-  name: 'Salmon Cookies'
-  , hours: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm',
-   '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm']
 
-  , whatHours: function() {
-      console.log('I am open at certain hours: ' + this.hours);
-    }
-  // , sum: function(a, b){
-  //    return a + b;
-  //   }
-  , //you can write it as 'listHours()' thanks to the ES6 shorthand.
-  listHours: function() {
-    var contentArea = document.getElementById('content_area');
+var storeList = [pike, seatac, seattleCenter, capitolHill, alki];
+function printSalesFigures() {
+  var contentArea = document.getElementById('content_area');
+  var totalCookiesPerDay = 0;
+
+//for loop for stores, looping through each store in array storeList.
+  for(var k = 0; storeList.length; k++){
     var ul = document.createElement('ul');
-    var li;
+    var li = ul.createElement(li);
 
-    for ( var i = 0; i < this.hours.length; i++) {
-      li = document.createElement('li');
-      li.textContent = this.hours[i];
+    //this loop prints the hours and the sales figures per hour.
+    for(var i = 0; storeList[k].hours.length ; i++){
+      console.log('the hours area : ', storeList[k].hours.length);
+      var freshBake = storeList[k].hours[i].cookiesPerHour();
+
+      li.textContent += storeList[k].hours[i];
+      li.textContent += freshBake;
       ul.appendChild(li);
-
+      totalCookiesPerDay += freshBake;
+    //end of inner for loop
     }
-    li.textContent += 'TEST LINE ITEM';
+
+    li.appendChild('Total: ')
     contentArea.appendChild(ul);
-
+//end of outer for-loop
   }
+    li.textContent += 'TEST LINE ITEM';
 
-//end object cookieStore
-};
+//END OF FUNCTION printSalesFigures
+}
 
-//cookieStore.listHours();
+printSalesFigures();
 
 //getRandomInt is used to create customers.
 
@@ -52,7 +53,7 @@ var pike = {
   }
   , //this random integer generator will create cookie sales per hr.
     cookiesPerHour: function() {
-      var avgSales = this.getRandomInt() * this.projectedSales;
+      var avgSales = Math.round(this.getRandomInt() * this.projectedSales);
       return avgSales;
     }
 
@@ -66,17 +67,23 @@ var seatac = {
    '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm']
   , minCustomers: 3
   , maxCustomers: 24
-  , avgCookieSales: 1.2
+  , projectedSales: 1.2
+  , salesPerHour: []
   , whatHours: function() {
-      console.log('SeaTac Airport is open at: ' + this.hours);
+      console.log('I am open at certain hours: ' + this.hours);
     }
   , getRandomInt: function() {
       var min = Math.ceil(this.minCustomers);
       var max = Math.floor(this.maxCustomers);
       return Math.floor(Math.random() * (max - min)) + min;
   }
+  , //this random integer generator will create cookie sales per hr.
+    cookiesPerHour: function() {
+      var avgSales = Math.round(this.getRandomInt() * this.projectedSales);
+      return avgSales;
+    }
 
-//end of seatac object
+//end of seatac
 };
 
 var seattleCenter = {
@@ -85,17 +92,23 @@ var seattleCenter = {
    '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm']
   , minCustomers: 11
   , maxCustomers: 38
-  , avgCookieSales: 3.7
+  , projectedSales: 3.7
+  , salesPerHour: []
   , whatHours: function() {
-      console.log('Seattle Center open at these certain hours: ' + this.hours);
+      console.log('I am open at certain hours: ' + this.hours);
     }
   , getRandomInt: function() {
       var min = Math.ceil(this.minCustomers);
       var max = Math.floor(this.maxCustomers);
       return Math.floor(Math.random() * (max - min)) + min;
   }
+  , //this random integer generator will create cookie sales per hr.
+    cookiesPerHour: function() {
+      var avgSales = Math.round(this.getRandomInt() * this.projectedSales);
+      return avgSales;
+    }
 
-//end of Seattle Center object
+//end of seattleCenter
 };
 
 var capitolHill = {
@@ -104,17 +117,23 @@ var capitolHill = {
    '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm']
   , minCustomers: 20
   , maxCustomers: 38
-  , avgCookieSales: 2.3
+  , projectedSales: 2.3
+  , salesPerHour: []
   , whatHours: function() {
-      console.log('Capitol Hill open at these certain hours: ' + this.hours);
+      console.log('I am open at certain hours: ' + this.hours);
     }
   , getRandomInt: function() {
       var min = Math.ceil(this.minCustomers);
       var max = Math.floor(this.maxCustomers);
       return Math.floor(Math.random() * (max - min)) + min;
   }
+  , //this random integer generator will create cookie sales per hr.
+    cookiesPerHour: function() {
+      var avgSales = Math.round(this.getRandomInt() * this.projectedSales);
+      return avgSales;
+    }
 
-//end of Capitol Hill object
+//end of capitolHill
 };
 
 var alki = {
@@ -123,15 +142,21 @@ var alki = {
    '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm']
   , minCustomers: 2
   , maxCustomers: 16
-  , avgCookieSales: 4.6
+  , projectedSales: 4.6
+  , salesPerHour: []
   , whatHours: function() {
-      console.log('Alki open at these certain hours: ' + this.hours);
+      console.log('I am open at certain hours: ' + this.hours);
     }
   , getRandomInt: function() {
       var min = Math.ceil(this.minCustomers);
       var max = Math.floor(this.maxCustomers);
       return Math.floor(Math.random() * (max - min)) + min;
   }
+  , //this random integer generator will create cookie sales per hr.
+    cookiesPerHour: function() {
+      var avgSales = Math.round(this.getRandomInt() * this.projectedSales);
+      return avgSales;
+    }
 
-//end of Capitol Hill object
+//end of capitolHill
 };
