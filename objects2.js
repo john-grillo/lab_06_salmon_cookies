@@ -1,38 +1,4 @@
 'use strict';
-
-var storeList = [pike, seatac, seattleCenter, capitolHill, alki];
-function printSalesFigures() {
-  var contentArea = document.getElementById('content_area');
-  var totalCookiesPerDay = 0;
-
-//for loop for stores, looping through each store in array storeList.
-  for(var k = 0; storeList.length; k++){
-    var ul = document.createElement('ul');
-    var li = ul.createElement(li);
-
-    //this loop prints the hours and the sales figures per hour.
-    for(var i = 0; storeList[k].hours.length ; i++){
-      console.log('the hours area : ', storeList[k].hours.length);
-      var freshBake = storeList[k].hours[i].cookiesPerHour();
-
-      li.textContent += storeList[k].hours[i];
-      li.textContent += freshBake;
-      ul.appendChild(li);
-      totalCookiesPerDay += freshBake;
-    //end of inner for loop
-    }
-
-    li.appendChild('Total: ')
-    contentArea.appendChild(ul);
-//end of outer for-loop
-  }
-    li.textContent += 'TEST LINE ITEM';
-
-//END OF FUNCTION printSalesFigures
-}
-
-printSalesFigures();
-
 //getRandomInt is used to create customers.
 
 var pike = {
@@ -160,3 +126,40 @@ var alki = {
 
 //end of capitolHill
 };
+
+var storeList = [pike, seatac, seattleCenter, capitolHill, alki];
+function printSalesFigures() {
+  var contentArea = document.getElementById('content_area');
+  var totalCookiesPerDay = 0;
+
+//for loop for stores, looping through each store in array storeList.
+  for(var k = 0; k < storeList.length; k++){
+    console.log(storeList[k].name);
+    var ul = document.createElement('ul');
+    ul.innerHTML = '<h2><u>' + storeList[k].name + '</u></h2>';
+    // console.log(storeList[k].hours.length);
+    //this loop prints the hours and the sales figures per hour.
+    for(var i = 0; i < storeList[k].hours.length; i++){
+      var li = document.createElement('li');
+      console.log('the hours area : ', storeList[k].hours.length);
+      var freshBake = storeList[k].cookiesPerHour();
+
+      li.textContent += storeList[k].hours[i];
+      li.textContent += ' : ' + freshBake + ' cookies';
+      ul.appendChild(li);
+      totalCookiesPerDay += freshBake;
+    //end of inner for loop
+    }
+
+    li = document.createElement('li');
+    li.innerHTML = '<strong>Total ' + totalCookiesPerDay + '</strong>';
+    ul.appendChild(li);
+    contentArea.appendChild(ul);
+//end of outer for-loop
+  }
+    li.textContent += 'cookies';
+
+//END OF FUNCTION printSalesFigures
+}
+
+printSalesFigures();
