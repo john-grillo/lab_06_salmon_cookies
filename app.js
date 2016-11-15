@@ -110,6 +110,7 @@ var alki = {
   , maxCustomers: 16
   , projectedSales: 4.6
   , salesPerHour: []
+  , total: 0
   , whatHours: function() {
       console.log('I am open at certain hours: ' + this.hours);
     }
@@ -123,7 +124,47 @@ var alki = {
       var avgSales = Math.round(this.getRandomInt() * this.projectedSales);
       return avgSales;
     }
+  , cookiesperDay: function() {
+      var dailyCookieCount;
+      for (var i = 0; i < this.hours.length; i++) {
+        dailyCookieCount = this.cookiesPerHour();
+        this.total += dailyCookieCount;
+        this.salesPerHour.push(dailyCookieCount);
+         // there is no return property as I am updating the salesPerHour array
+         // I will use that for my rendering.
+     //end of for loop
+      }
+ //end of cookiesperDay function
+  }
+ , toHtml: function() {
+    this.cookiesperDay;
+    
+    var unorderedList = document.createElement('ul');
+    var storeNameListItem = document.createElement('li');
+    var totalListItem = document.createElement('li');
+    var hourlyListItem;
+    var hourMessage;
 
+    //create a node, update a node and put it where it needs to go.
+    storeNameListItem.textContent = this.name;
+    unorderedList.appendChild(storeNameListItem);
+
+    for (var i = 0; i < this.hours.length; i++) {
+      hourMessage = this.hours[i] + ': ' + this.salesPerHour[i];
+      hourlyListItem = document.createElement('li');
+      hourlyListItem.textContent = hourMessage;
+      unorderedList.appendChild(hourlyListItem);
+
+    //end of for loop
+    }
+
+    //create a node, update a node and put it where it needs to go.
+    totalListItem.textContent = 'Total ' + this.total;
+    unorderedList.appendChild(totalListItem);
+
+    return unorderedList;
+//end of toHtml function
+ }
 //end of alki
 };
 
