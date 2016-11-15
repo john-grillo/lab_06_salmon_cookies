@@ -2,7 +2,8 @@
 console.log('i opend');
 var cookieStore = {
   name: 'Salmon Cookies'
-  , hours: ['7am', '8am', '9am', '10am', '11am', '12pm']
+  , hours: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm',
+   '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm']
 
   , whatHours: function() {
     console.log('I am open at certain hours: ' + this.hours);
@@ -29,5 +30,12 @@ var cookieStore = {
 
 //end object cookieStore
 };
+
+//Math Random function for reference
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
 cookieStore.listHours();
