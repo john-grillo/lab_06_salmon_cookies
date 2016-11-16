@@ -2,7 +2,6 @@
 console.log('the script is loading');
 //global variables: list of stores and list of hours for operations.
 //Hours of operaton are the same for all stores.
-var storeList = ['pike', 'seatac', 'seattleCenter', 'capitolHill', 'alki', 'TOTALS'];
 var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm',
  '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
@@ -55,7 +54,7 @@ function CookieStore(storeName, minCust, maxCust, avgCookies) {
   this.maxCust = maxCust;
   this.avgCookies = avgCookies;
 //below this holds things not in the constructor but used anyway.
-  this.salesTracker = [];
+  this.salesPerHour = [];
   this.total = 0;
 
 //end of CookieStore construction function
@@ -120,8 +119,8 @@ CookieStore.prototype.cookiesPerDay = function() {
   for (var i = 0; i < hours.length; i++) {
     dailyCookieCount = this.cookiesPerHour();
     this.total += dailyCookieCount;
-    this.salesTracker.push(dailyCookieCount);
-     // there is no return property as I am updating the salesPerHour/salesTracker array
+    this.salesPerHour.push(dailyCookieCount);
+     // there is no return property as I am updating the salesPerHour array
      // I will use that for my rendering.
  //end of for loop
   }
@@ -129,8 +128,8 @@ CookieStore.prototype.cookiesPerDay = function() {
 };
 
 // CookieStore.prototype.salesTotal = function() {
-//   for( var i = 0; i < this.salesTracker.length; i++ ){
-//     this.total += this.salesTracker[i];
+//   for( var i = 0; i < this.salesPerHour.length; i++ ){
+//     this.total += this.salesPerHour[i];
 //   }
 //   return this.total;
 // };
@@ -147,3 +146,12 @@ var seatac = new CookieStore('Seatac Airport', 11, 38, 3.7);
 var seattleCenter = new CookieStore('Seattle Center', 22, 65, 6.3);
 var capitolHill = new CookieStore('Capitol Hill', 20, 38, 2.3);
 var alki = new CookieStore('Alki', 2, 16, 4.8);
+var storeList = [pike, seatac, seattleCenter, capitolHill, alki];
+
+//now to print the tables to screen
+function printStores(){
+  for(var i = 0; i < storeList.length; i++)
+    storeList[i].toHtml();
+};
+
+printStores();
