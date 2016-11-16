@@ -8,6 +8,9 @@ var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm',
 console.log('the header is going to render');
 renderHeaderRow();
 
+//break to new object instances. Or in this case, stores.
+
+
 //functions to build a table.
 //this code creates a header row for the table.
 //this bloc was written by Aaron
@@ -127,20 +130,15 @@ CookieStore.prototype.cookiesPerDay = function() {
 //end of cookiesperDay function
 };
 
-// CookieStore.prototype.salesTotal = function() {
-//   for( var i = 0; i < this.salesPerHour.length; i++ ){
-//     this.total += this.salesPerHour[i];
-//   }
-//   return this.total;
-// };
-
 CookieStore.prototype.hours = function() {
   console.log('The hours of operation for this store is ' + hours);
   return hours;
 };
 
+/********************************************
+THIS SECTION BUILDS TABLE AS IT IS WITH STATIC FIGURES
+********************************************/
 
-//break to new object instances. Or in this case, stores.
 var pike = new CookieStore('1st & Pike', 22, 65, 6.3);
 var seatac = new CookieStore('Seatac Airport', 11, 38, 3.7);
 var seattleCenter = new CookieStore('Seattle Center', 22, 65, 6.3);
@@ -155,3 +153,10 @@ function printStores(){
 };
 
 printStores();
+
+
+/********************************************
+**THIS SECTION BUILDS FORM FOR NEW STORES***
+********************************************/
+var submitNewStore = document.getElementById('new_store_sales');
+var newStoreFigures = [];
