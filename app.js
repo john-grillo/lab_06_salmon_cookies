@@ -54,6 +54,9 @@ function CookieStore(storeName, minCust, maxCust, avgCookies) {
   this.minCust = minCust;
   this.maxCust = maxCust;
   this.avgCookies = avgCookies;
+//below this holds things not in the constructor but used anyway.
+  this.salesTracker = [];
+  this.total = 0;
 
 //end of CookieStore construction function
 }
@@ -74,18 +77,22 @@ CookieStore.prototype.toHtml = function() {
   var totalTableData = document.createElement('td');
   var hourlyTableData;
 
+  this.cookiesPerDay();
+
 //create it, change content, put it somewhere.
   nameTableHeader.textContent = this.name;
   tableRow.appendChild(nameTableHeader);
+  console.log('what, me worry?');
+  console.log(hours.length);
 
-  for (var i = 0; i < this.hours.length; i++){
-    hourlyTableHeader = document.createElement('td');
-    hourlyTableData.textContent = this.salesPerHour();
+  for (var i = 0; i < hours.length; i++){
+    hourlyTableData = document.createElement('td');
+    hourlyTableData.textContent = this.cookiesPerHour();
     tableRow.appendChild(hourlyTableData);
   //end of for loop
   }
 
-  totalTableData.textContent = 15;
+  totalTableData.textContent = this.total;
   tableRow.appendChild(totalTableData);
 
   console.log(tableRow, storeTable);
@@ -103,29 +110,35 @@ CookieStore.prototype.getRandomInt = function()  {
 };
 
 CookieStore.prototype.cookiesPerHour = function() {
-  var avgSales = Math.round(this.getRandomInt() * this.projectedSales);
+  var avgSales = Math.round(this.getRandomInt() * this.avgCookies);
   return avgSales;
 };
+
+//
+CookieStore.prototype.cookiesPerDay = function() {
+  var dailyCookieCount;
+  for (var i = 0; i < hours.length; i++) {
+    dailyCookieCount = this.cookiesPerHour();
+    this.total += dailyCookieCount;
+    this.salesTracker.push(dailyCookieCount);
+     // there is no return property as I am updating the salesPerHour/salesTracker array
+     // I will use that for my rendering.
+ //end of for loop
+  }
+//end of cookiesperDay function
+};
+
+// CookieStore.prototype.salesTotal = function() {
+//   for( var i = 0; i < this.salesTracker.length; i++ ){
+//     this.total += this.salesTracker[i];
+//   }
+//   return this.total;
+// };
 
 CookieStore.prototype.hours = function() {
   console.log('The hours of operation for this store is ' + hours);
   return hours;
 };
-
-//create an array of cookies stored per hour and put into an array
-CookieStore.prototype.salesPerHour = function() {
-  console.log('Here are the sales projections per hour');
-  var salesTracker = [];
-
-  //purpose of for loop is to populate the salesTracker array
-  for(var i = 0; i < hours.length; i++) {
-    salesTracker.push(this.cookiesPerHour());
-  //end of for loop
-  }
-
-//end of salesPerHour
-};
-
 
 
 //break to new object instances. Or in this case, stores.
