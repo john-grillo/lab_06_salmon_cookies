@@ -1,0 +1,35 @@
+/* THIS IS JOHN GRILLO'S AMAZING SALMON COOKIE STORE STYLE SHEET. */
+
+/******************
+  TABLE SECTION
+******************/
+table {
+  border: 5px dashed red;
+  border-spacing: collapse;
+  text-align: center;
+
+}
+
+
+thead, th {
+  font-weight: bold;
+  background: salmon;
+}
+
+tr {
+  background: azure;
+  font-size: 1.6em;
+}
+
+
+td {
+  background: lightblue;
+  border: 1px solid lime;
+}
+
+tfoot {
+   display: table-footer-group;
+   vertical-align: middle;
+   border-color: inherit;
+   background: #deedbe;
+}
