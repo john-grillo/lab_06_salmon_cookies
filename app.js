@@ -189,5 +189,7 @@ function renderNewStore() {
   for(var i = 0; i < newStoreFigures.length; i++) {
     newStoreFigures[i].toHtml();
   }
+  newStoreFigures = [];
+
 //end of renderNewStore function
 };
