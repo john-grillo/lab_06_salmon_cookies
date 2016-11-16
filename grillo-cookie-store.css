@@ -6,7 +6,10 @@
 table {
   border: 5px dashed red;
   border-spacing: collapse;
+  text-align: center;
+
 }
+
 
 thead, th {
   font-weight: bold;
@@ -15,8 +18,9 @@ thead, th {
 
 tr {
   background: azure;
-  font-size: 2em;
+  font-size: 1.6em;
 }
+
 
 td {
   background: lightblue;

@@ -1,23 +1,26 @@
 'use strict';
+console.log('the script is loading');
 //global variables: list of stores and list of hours for operations.
 //Hours of operaton are the same for all stores.
 var storeList = ['pike', 'seatac', 'seattleCenter', 'capitolHill', 'alki', 'TOTALS'];
 var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm',
  '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
-
-
-
+console.log('the header is going to render');
 renderHeaderRow();
-console.log('the script is loading');
+
+// console.log('the table body is going to render');
+// renderBodyRow();
 
 //functions to build a table.
 //this code creates a header row for the table.
+//this bloc was written by Aaron
 function renderHeaderRow() {
   var storeTable = document.getElementById('store_table');
   var tableRow = document.createElement('tr');
   var blankTableHeader = document.createElement('th');
   var totalTableHeader = document.createElement('th');
+  blankTableHeader.innerHTML = '<th>Store Name \&dArr; || Store Hours \&rArr;</th>';
   // var nameTableHeader = document.createElement('th');
   // var totalTableData = document.createElement('td');
   var hourlyTableHeader;
@@ -35,10 +38,35 @@ function renderHeaderRow() {
   storeTable.appendChild(tableRow);
 
 //end of renderHeaderRow
-}
+};
 
 //this function will create the rows/body of a table
-
+//my attempt to do it on my own
+// function renderBodyRow() {
+//   var storeTable = document.getElementById('store_table');
+//   var tableRow = document.createElement('tr');
+//   var blankTableData = document.createElement('td');
+//   var storeName = document.createElement('td');
+//   var totalTableData = document.createElement('td');
+//   var hourlyTableData;
+//
+//   tableRow.appendChild(blankTableData);
+//
+//   for(var i = 0; i < hours.length; i++) {
+//     hourlyTableData = document.createElement('th');
+//                     //come back to here; replace cookiesSold
+//     hourlyTableData.textContent = cookiesSold;
+//     tableRow.appendChild(hourlyTableData);
+//
+//   //end of for-loop data
+//   }
+//
+//   totalTableHeader.textContent = 'Total';
+//   tableRow.appendChild(totalTableData);
+//   storeTable.appendChild(tableRow);
+//
+// //end of table row data labeler
+// };
 
 
 
@@ -70,12 +98,13 @@ CookieStore.prototype.logStoreName = function() {
 };
 
 //toHtml
+// this bloc creates the structure of the table.
 CookieStore.prototype.toHtml = function() {
   var storeTable = document.getElementById('store_table');
   var tableRow = document.createElement('tr');
-  var nameTableHeader = document.createElement('td');
-  var totalTableData = document.createElement('th');
-  var hourlyTableHeader;
+  var nameTableHeader = document.createElement('th');
+  var totalTableData = document.createElement('td');
+  var hourlyTableData;
 
 //create it, change content, put it somewhere.
   nameTableHeader.textContent = this.name;
@@ -83,12 +112,12 @@ CookieStore.prototype.toHtml = function() {
 
   for (var i = 0; i < this.hours.length; i++){
     hourlyTableHeader = document.createElement('td');
-    hourlyTableData.textContent = 5;
+    hourlyTableData.textContent = this.salesPerHour();
     tableRow.appendChild(hourlyTableData);
   //end of for loop
   }
 
-  totalTableData.textContent = 15;
+  totalTableData.textContent = hourlyTableData;
   tableRow.appendChild(totalTableData);
 
   console.log(tableRow, storeTable);
@@ -114,5 +143,21 @@ CookieStore.prototype.hours = function() {
   console.log('The hours of operation for this store is ' + hours);
   return hours;
 };
+
+//create an array of cookies stored per hour and put into an array
+CookieStore.prototype.salesPerHour = function() {
+  console.log('Here are the sales projections per hour');
+  var salesTracker = [];
+
+  //purpose of for loop is to populate the salesTracker array
+  for(var i = 0; i < hours.length; i++) {
+    salesTracker.push(this.cookiesPerHour());
+  //end of for loop
+  }
+
+//end of salesPerHour
+};
+
+
 
 //break to new object instances.
