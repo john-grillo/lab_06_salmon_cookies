@@ -45,18 +45,20 @@
 </table>
 <!-- JavaScript here in <section> will use form to build new store row. -->
 <!-- Constructor calls: storeName, minCust, maxCust, avgCookies -->
- <form id="new_store_sales">
-   <input type="reset">
-   <input type="text" id="new_store_name" placeholder="Write store name here" name="new_store_name">
-   <input type="number" min="1" id="new_store_min_cust" placeholder="Min. customers expected" name="new_store_min_cust">
-   <input type="number" min="1" id="new_store_max_cust" placeholder="Max. customers expected here" name="new_store_max_cust">
-   <input type="number" min="1" id="new_store_avg_cookies" placeholder="Mean cookies to be sold." name="new_store_avg_cookies">
-   <input type="submit" id="submitButton" placeholder="Make a new store!" name="submit">
- </form>
- <section id="form_printer"> </section>
-<footer>
-  <p>Produced by John Andrew Grillo</p>
-</footer>
+   <form id="new_store_sales">
+     <input type="reset">
+     <input type="text" id="new_store_name" placeholder="storeName" name="new_store_name">
+     <input type="number" min="1" id="new_store_min_cust" placeholder="minCust" name="new_store_min_cust">
+     <input type="number" min="1" id="new_store_max_cust" placeholder="maxCust" name="new_store_max_cust">
+     <input type="number" min="1" id="new_store_avg_cookies" placeholder="avgCookies" name="new_store_avg_cookies">
+     <input type="submit" id="submitButton" placeholder="Make a new store!" name="submit">
+   </form>
+   <section id="form_printer">
+
+   </section>
+  <footer>
+    <p>Produced by John Andrew Grillo</p>
+  </footer>
  <script type="text/javascript" src="app.js"></script>
 </body>
 </html>

@@ -160,3 +160,34 @@ printStores();
 ********************************************/
 var submitNewStore = document.getElementById('new_store_sales');
 var newStoreFigures = [];
+
+submitNewStore.addEventListener('submit', handleStoreSubmission);
+
+function handleStoreSubmission() {
+  event.preventDefault();
+
+  var storeName = event.target.new_store_name.value;
+  var minCust = event.target.new_store_min_cust.value;
+  var maxCust = event.target.new_store_max_cust.value;
+  var avgCookies = event.target.new_store_avg_cookies.value;
+
+  var newStore = new CookieStore(storeName, minCust, maxCust, avgCookies);
+  newStoreFigures.push(newStore);
+
+  renderNewStore();
+//end of handleStoreSubmission function
+};
+
+function renderNewStore() {
+  var storehouse = document.getElementById('form_printer');
+  // var storeNameCell;
+  // var minCustCell;
+  // var maxCustCell;
+  // var avgCookies;
+
+
+  for(var i = 0; i < newStoreFigures.length; i++) {
+    newStoreFigures[i].toHtml();
+  }
+//end of renderNewStore function
+};
