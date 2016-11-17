@@ -185,7 +185,6 @@ function renderNewStore() {
   // var maxCustCell;
   // var avgCookies;
 
-
   for(var i = 0; i < newStoreFigures.length; i++) {
     newStoreFigures[i].toHtml();
   }
