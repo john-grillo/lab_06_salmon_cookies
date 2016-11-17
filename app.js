@@ -2,8 +2,9 @@
 console.log('the script is loading');
 //global variables: list of stores and list of hours for operations.
 //Hours of operaton are the same for all stores.
-var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm',
- '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+var hours = ['6am', '7am', '8am', '9am', '10am',
+ '11am', '12pm', '1pm', '2pm', '3pm',
+  '4pm', '5pm', '6pm', '7pm', '8pm'];
 
 console.log('the header is going to render');
 renderHeaderRow();
@@ -40,7 +41,9 @@ function renderHeaderRow() {
 };
 
 
-
+/*******************************************************
+**AND NOW THE CONSTRUCTOR & PROTOTYPE METHODS SECTION***
+*******************************************************/
 //REMEMBER: Functions go on prototypes, properties go on constructors.
 
 // The folloing is the CookieStore constructor function.
@@ -63,7 +66,6 @@ function CookieStore(storeName, minCust, maxCust, avgCookies) {
 //end of CookieStore construction function
 }
 
-//AND NOW THE PROTOTYPE METHODS SECTION
 
 // Adding a new prototype to the global namespace in order to save memory.
 CookieStore.prototype.logStoreName = function() {
@@ -135,9 +137,9 @@ CookieStore.prototype.hours = function() {
   return hours;
 };
 
-/********************************************
+/*******************************************************
 THIS SECTION BUILDS TABLE AS IT IS WITH STATIC FIGURES
-********************************************/
+********************************************************/
 
 var pike = new CookieStore('1st & Pike', 22, 65, 6.3);
 var seatac = new CookieStore('Seatac Airport', 11, 38, 3.7);
@@ -160,17 +162,21 @@ printStores();
 ********************************************/
 var submitNewStore = document.getElementById('new_store_sales');
 var newStoreFigures = [];
-
+//remember, addEventListener is a method
 submitNewStore.addEventListener('submit', handleStoreSubmission);
 
 function handleStoreSubmission() {
   event.preventDefault();
-
+//getting user input from dom nodes.
+//event.target.thingsNStuff.value will grab a value based upon the name attribute
+//event.target is the node that fired off this event
+//document.getElementById('thingsNStuff') would have given us the same thing.
   var storeName = event.target.new_store_name.value;
   var minCust = event.target.new_store_min_cust.value;
   var maxCust = event.target.new_store_max_cust.value;
   var avgCookies = event.target.new_store_avg_cookies.value;
 
+//calling the constructore function and associated prototype methods.
   var newStore = new CookieStore(storeName, minCust, maxCust, avgCookies);
   newStoreFigures.push(newStore);
 
@@ -178,6 +184,8 @@ function handleStoreSubmission() {
 //end of handleStoreSubmission function
 };
 
+//this function will take user input from the sales.html form and use
+//the information there to produce a new store. HTML side does validation
 function renderNewStore() {
   var storehouse = document.getElementById('form_printer');
   // var storeNameCell;

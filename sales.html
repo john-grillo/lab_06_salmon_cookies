@@ -39,7 +39,6 @@
 </table>
 
 <h1>DYNAMIC TABLE MADE BY JOHN GRILLO WITH HTML5, CSS3, JAVASCRIPT</h1>
-<h2>Store Name &dArr; | Store Hours &rArr;</h2>
 <table id='store_table'>
   <!-- JavaScript creates dynamic content here -->
 </table>
@@ -47,11 +46,11 @@
 <!-- Constructor calls: storeName, minCust, maxCust, avgCookies -->
    <form id="new_store_sales">
      <input type="reset">
-     <input type="text" id="new_store_name" placeholder="storeName" name="new_store_name">
-     <input type="number" min="1" id="new_store_min_cust" placeholder="minCust" name="new_store_min_cust">
-     <input type="number" min="1" id="new_store_max_cust" placeholder="maxCust" name="new_store_max_cust">
-     <input type="number" min="1" id="new_store_avg_cookies" placeholder="avgCookies" name="new_store_avg_cookies">
-     <input type="submit" id="submitButton" placeholder="Make a new store!" name="submit">
+     <input required type="text" id="new_store_name" placeholder="storeName" name="new_store_name">
+     <input required type="number" min="1" id="new_store_min_cust" placeholder="minCust" name="new_store_min_cust">
+     <input required type="number" min="1" id="new_store_max_cust" placeholder="maxCust" name="new_store_max_cust">
+     <input required type="number" min="1" id="new_store_avg_cookies" placeholder="avgCookies" name="new_store_avg_cookies">
+     <input type="submit" id="submitButton" value="Make a new store!" name="submit">
    </form>
    <section id="form_printer">
 
