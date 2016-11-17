@@ -1,4 +1,7 @@
 /* THIS IS JOHN GRILLO'S AMAZING SALMON COOKIE STORE STYLE SHEET. */
+* {
+  box-sizing: border-box;
+}
 
 /******************
   TABLE SECTION
