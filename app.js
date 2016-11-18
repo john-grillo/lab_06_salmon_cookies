@@ -5,6 +5,7 @@ console.log('the script is loading');
 var hours = ['6am', '7am', '8am', '9am', '10am',
  '11am', '12pm', '1pm', '2pm', '3pm',
   '4pm', '5pm', '6pm', '7pm', '8pm'];
+var completeStoreList = [];
 
 console.log('the header is going to render');
 renderHeaderRow();
@@ -147,6 +148,7 @@ var seattleCenter = new CookieStore('Seattle Center', 22, 65, 6.3);
 var capitolHill = new CookieStore('Capitol Hill', 20, 38, 2.3);
 var alki = new CookieStore('Alki', 2, 16, 4.8);
 var storeList = [pike, seatac, seattleCenter, capitolHill, alki];
+completeStoreList = storeList; //this copie storeList to completeStoreList
 
 //now to print the tables to screen
 function printStores(){
@@ -158,8 +160,8 @@ printStores();
 
 
 /********************************************
-**THIS SECTION BUILDS FORM FOR NEW STORES***
-********************************************/
+**THIS SECTION BUILDS FORM FOR NEW STORES****
+*********************************************/
 var submitNewStore = document.getElementById('new_store_sales');
 var newStoreFigures = [];
 //remember, addEventListener is a method
@@ -178,8 +180,12 @@ function handleStoreSubmission() {
 
 //calling the constructore function and associated prototype methods.
   var newStore = new CookieStore(storeName, minCust, maxCust, avgCookies);
+  //below variable is for the renderNewStore function, which resets after each function call.
   newStoreFigures.push(newStore);
-
+  //this goes to master list, to keep a complete record
+  completeStoreList.push(newStore);
+  /*margin: 20px auto;
+  padding: 20px;*/
   renderNewStore();
 //end of handleStoreSubmission function
 };
@@ -188,10 +194,6 @@ function handleStoreSubmission() {
 //the information there to produce a new store. HTML side does validation
 function renderNewStore() {
   var storehouse = document.getElementById('form_printer');
-  // var storeNameCell;
-  // var minCustCell;
-  // var maxCustCell;
-  // var avgCookies;
 
   for(var i = 0; i < newStoreFigures.length; i++) {
     newStoreFigures[i].toHtml();
@@ -200,3 +202,50 @@ function renderNewStore() {
 
 //end of renderNewStore function
 };
+
+/********************************************
+**THIS SECTION CALCULATES TOTALS***
+********************************************/
+
+
+function renderTableFooter() {
+  //first, create tablefooter.
+  var storeTotalCalc = document.getElementById('column_calc');
+  var tableRow = document.createElement('tr');
+  var blankFooterHeader = document.createElement('th');
+  var totalFooterData = document.createElement('td');
+  // var nameTableHeader = document.createElement('th');
+  // var totalTableData = document.createElement('td');
+  var footerTotals;
+  var storeTotals = 0;
+  var grandTotal = 0;
+
+  blankFooterHeader.innerHTML = '<th>Store Totals \&rArr;</th>';
+  tableRow.appendChild(blankFooterHeader);
+
+//outer for loop loops over hours (rows) and inner for loop moves over stores (columns)
+  for (var i = 0; i < hours.length; i++) {
+    footerTotals = document.createElement('td');
+
+    for (var k = 0; k < completeStoreList.length; k++)
+    {
+      storeTotals += completeStoreList[k].salesPerHour[i];
+      grandTotal += storeTotals;
+      //console.log(storeTotals);
+    //end of inner for loop
+    };
+
+    footerTotals.textContent = storeTotals;
+    tableRow.appendChild(footerTotals);
+    tableRow.appendChild(totalFooterData);
+    storeTotals = 0;
+  }
+
+  totalFooterData.textContent = grandTotal;
+  tableRow.appendChild(totalFooterData);
+
+  storeTotalCalc.appendChild(tableRow);
+//end of renderTableFooter function
+}
+
+renderTableFooter();

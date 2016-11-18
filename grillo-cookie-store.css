@@ -12,8 +12,8 @@ table {
   text-align: center;
   padding: 10px;
   margin: 10px;
+  overflow: hidden;
 }
-
 
 thead, th {
   font-weight: bold;
@@ -45,7 +45,7 @@ th:hover, td:hover {
   position: relative;
   background: rgba(205,50,205, .6); /*deep purple*/
   box-shadow: 0 0 5px 5px rgba(50, 205, 50, 1); /* glowing lime color, reduced opacity */
-  z-index: 20px;
+  z-index: 20px;*/
   /*margin: 20px auto;
   padding: 20px;*/
 }
