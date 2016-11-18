@@ -200,6 +200,7 @@ function renderNewStore() {
   }
   newStoreFigures = [];
 
+  renderTableFooter();
 //end of renderNewStore function
 };
 
@@ -219,6 +220,7 @@ function renderTableFooter() {
   var footerTotals;
   var storeTotals = 0;
   var grandTotal = 0;
+  storeTotalCalc.textContent = '';
 
   blankFooterHeader.innerHTML = '<th>Store Totals \&rArr;</th>';
   tableRow.appendChild(blankFooterHeader);
